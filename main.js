@@ -1,44 +1,70 @@
+//Global Variables
 const numbers = document.querySelectorAll('.numbers');
-const display = document.querySelector('#display')
+const screen = document.querySelector('#screen')
 const zero = document.querySelector('.zero')
 const del = document.querySelector('.del')
 const operators = document.querySelectorAll('.operators')
 const equal = document.querySelector('.equal')
 
-
+// input numbers on the butons
 for (i = 0; i < numbers.length; i++) {
-    numbers[i].innerHTML = i + 1
+    numbers[i].innerHTML = parseInt(i + 1)
    
 }
-zero.innerHTML = 0
+zero.innerHTML = parseInt(0)
 
-
+let operatorsArray = Array.from(operators)
+console.log(operatorsArray)
+console.log(numbers)
+// Display Clicked number on the screen
 const cal = []
 numbers.forEach (function (number) {
     number.addEventListener('click', addNum)
     function addNum() {
     cal.push(number.innerHTML)
-      cal.join(' ')
-      console.log(cal)
-    display.innerHTML = cal;
-  
-}
+    screen.innerHTML = cal.join(''); // remove commas from array
+   }
 }) 
 
+
+//Delete last input 
 del.addEventListener('click', () => {
-    cal.pop()
-    display.innerHTML = cal
-    console.log(cal)
+    cal.pop();
+    screen.innerHTML = cal;
 })
 
-console.log(operators)
-operators.forEach (function (operator) {
+
+// Display Sign when clicked
+operatorsArray.forEach (function (operator) {
     operator.addEventListener('click', addOp)
     function addOp() {
-        cal.push(operator.innerHTML)
-        cal.join(' ')
-        console.log(cal)
-      display.innerHTML = cal;
+       
+        if (cal[cal.length - 1] != operator.innerHTML) {
+            cal.push(operator.innerHTML)
+            screen.innerHTML = cal.join(''); // remove commas from array
+        } else {
+            cal.pop()
+            cal.push(operator.innerHTML)
+            screen.innerHTML = cal.join(''); // remove commas from array
+        }
     }
 })
 
+/*equal.addEventListener('click', operate);
+function operate() {
+    if (cal.operators = operators[0]) {
+        
+    }  
+}*/ 
+const arr = [5,4, 6, 'how'];
+console.log(arr)
+window.addEventListener ('click', p)
+function p() {
+ 
+
+if (arr[arr.length - 1] != "how") {
+    arr.pop()
+    arr.push(5)
+    console.log(arr)
+}    
+} 
